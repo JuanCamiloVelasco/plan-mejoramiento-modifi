@@ -1,0 +1,12 @@
+<div class="container">
+    <!-- creo mi boton con sus estilos y algunas variables que seran usadas para la configuracion -->
+    <button [ngStyle]="{
+        color:color,
+        'background-color':bgColor,
+        'font-size.rem':fontSizeRem,
+        'width.rem':widthRem
+    }"
+    [type]="type"
+    (click)="onClick.emit()"
+    > {{text}}</button>
+</div>

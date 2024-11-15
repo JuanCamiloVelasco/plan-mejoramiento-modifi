@@ -1,0 +1,30 @@
+<!-- Muestro mis barras de busqueda -->
+<app-search></app-search>
+<!-- En caso que no encuentre ningun resultado llamo mi partial para mostrar un mensaje de no encontrado con un link para volver al menu -->
+<app-no-encontrado [visible]="!eventos || !eventos.length" resetLinkText="Reiniciar Busqueda"></app-no-encontrado>
+<main class="contenedor panel-administracion">
+    <div class="seccion-eventos">
+        <h1 *ngIf="eventos.length">Eventos</h1>
+        <ul>
+            <!-- Con ayuda de PrimNg muestro la ventana de confirmacion -->
+            <p-confirmDialog></p-confirmDialog>
+            <!-- Itero mis eventos y los muestro -->
+            <li *ngFor="let evento of eventos">
+                <div class="informacion-eventos">
+                    <h2 class="fecha">Fecha del evento: {{fechasFormat(evento.fecha)}}</h2>
+                    <a routerLink="/infoEv/{{evento.id}}">
+                        <h3>{{evento.nombre}}</h3>
+                    </a>
+                    <p>{{evento.descripcion}}</p>
+                    <small>{{evento.tipo}}</small>
+                </div>
+                <div class="acciones contenedor-botones">
+                    <a routerLink="/infoEv/{{evento.id}}" class="btn btn-verde">Informacion</a>
+                    <a routerLink="/evento/{{evento.id}}" class="btn btn-azul">Editar</a>
+                    <a (click)="deleteEvento(evento.id)" class="btn btn-rojo">Eliminar</a>
+                </div>
+            </li>
+        </ul>
+        <h1 *ngIf="!eventos">Aun no tienes Eventos creados</h1>
+    </div>
+</main>
